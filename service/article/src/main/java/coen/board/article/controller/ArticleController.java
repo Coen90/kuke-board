@@ -3,6 +3,7 @@ package coen.board.article.controller;
 import coen.board.article.service.ArticleService;
 import coen.board.article.service.request.ArticleCreateRequest;
 import coen.board.article.service.request.ArticleUpdateRequest;
+import coen.board.article.service.response.ArticlePageResponse;
 import coen.board.article.service.response.ArticleResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,15 @@ public class ArticleController {
     @GetMapping("/v1/articles/{articleId}")
     public ArticleResponse readArticle(@PathVariable Long articleId) {
         return articleService.read(articleId);
+    }
+
+    @GetMapping("/v1/articles")
+    public ArticlePageResponse readAllArticles(
+            @RequestParam Long boardId,
+            @RequestParam Long page,
+            @RequestParam Long pageSize
+    ) {
+        return articleService.readAll(boardId, page, pageSize);
     }
 
     @PostMapping("/v1/articles")
