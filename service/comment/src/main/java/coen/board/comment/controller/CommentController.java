@@ -45,8 +45,6 @@ public class CommentController {
             @RequestParam(required = false) Long lastCommentId,
             @RequestParam Long pageSize
     ) {
-        System.out.println("lastParentCommentId = " + lastParentCommentId);
-        System.out.println("lastCommentId = " + lastCommentId);
         return commentService.readAll(articleId, lastParentCommentId, lastCommentId, pageSize);
     }
 }
